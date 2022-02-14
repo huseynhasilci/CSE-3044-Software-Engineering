@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block body_block %}
+<div class="jumbotron">
+    <h1>Showing The {{ dataUser }} Infos</h1>
+    <br>
+    <table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Age</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Height</th>
+      <th scope="col">Calorie</th>
+      <th scope="col">BMI</th>
+      <th scope="col">Weight Status</th>
+      <th scope="col">Pregnancie</th>
+      <th scope="col">Glucose</th>
+      <th scope="col">Blood Pressure</th>
+      <th scope="col">Skin Thickness</th>
+      <th scope="col">Insulin</th>
+      <th scope="col">Diabetes Pedigree Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>{{ dataName }}</td>
+      <td>{{ dataSurame }}</td>
+      <td>{{ data2Age }}</td>
+      <td>{{ dataWeight }}</td>
+      <td>{{ dataHeight }}</td>
+      <td>{{ userCal }}</td>
+      <td>{{ userBMI }}</td>
+      <td>{{ weightStatus }}</td>
+      <td>{{ dataPregnancie }}</td>
+      <td>{{ dataGlucose }}</td>
+      <td>{{ dataBloodPressure }}</td>
+      <td>{{ dataSkinThickness }}</td>
+      <td>{{ dataInsulin }}</td>
+      <td>{{ dataDiabetesPedigreeFunction }}</td>
+    </tr>
+
+  </tbody>
+</table>
+<br>
+<a href="{% url 'diabetapp:update_amiinrisk' %}"><button type="button" class="btn btn-primary" >Update User Info</button></a>
+<br>
+  {% if prediction == 1 %}
+    <h1>This algorithm gives 80 percent accurate results. According to our algorithm, <strong style="color:red">you have a risk of diabetes.</strong> It is useful to see a doctor. We wish you healthy days.</h1>
+    <br>
+    <h2>That is the calorie you should take every day: {{ userCal }}</h2>
+  {% else %}
+    <h1>This algorithm provides 80 percent accurate results, according to our algorithm,<strong style="color:red">you do not have the risk of diabetes.</strong>  However, you may want to see a doctor. We wish you healthy days.</h1>
+    <br>
+    <h2>That is the calorie you should take every day: {{ userCal }}</h2>
+  {% endif %}
+</div>
+
+
+{% endblock %}

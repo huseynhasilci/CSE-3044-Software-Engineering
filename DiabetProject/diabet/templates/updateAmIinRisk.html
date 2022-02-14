@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block body_block %}
+  {% if updated %}
+    <div class="jumbotron">
+      <div class="alert alert-success">
+        <strong>Success!</strong> Thank you for trying the guessing. We care about your health. Now you can see are you in riks or not in user infos.
+      </div>
+      <a href="{% url 'diabetapp:userinfofunc' %}" class="btn btn-primary stretched-link" style='text-align: center'>Go To User Infos</a>
+    </div>
+
+  {% else %}
+    <div class="jumbotron">
+        <h1>Am I In Risk</h1>
+        <br>
+        <form  enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+
+          <br>
+          <input type="submit" name="" value="Update">
+
+        </form>
+
+    </div>
+    {% endif %}
+{% endblock %}

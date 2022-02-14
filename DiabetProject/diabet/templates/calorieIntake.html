@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+
+{% block body_block %}
+
+  <div class="jumbotron">
+      <h1>Calorie Intake Part:</h1>
+      <br>
+      <br>
+      <h1>You should take that much calorie: {{ userCal }}</h1>
+      <h1>You take that much calorie today: {{ takenCal }}</h1>
+      <br>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: {{ deneme }}%" aria-valuenow="{{ deneme }}" aria-valuemin="0" aria-valuemax="100">{{ deneme }}%</div>
+      </div>
+      <br>
+      <form  enctype="multipart/form-data" method="POST" >
+        {% csrf_token %}
+        {{ dailyCal.as_p }}
+
+        <br>
+        <input type="submit" name="form_field" value="Calculate">
+        <input type="submit" name="set_zero" value="Set to zero(0)">
+      </form>
+
+        <br>
+        <br>
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Group</th>
+              <th scope="col">Calorie(100 gr)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for key,value in food_w_caloires.items %}
+              <tr>
+                  <th scope="row">{{ i }}</th>
+                  <td> {{ value.0 }}</td>
+                  <td>  {{ value.1 }}</td>
+                  <td>  {{ value.2 }}</td>
+              </tr>
+            {% endfor %}
+            <script type="text/javascript">
+              console.log(' {{ nameList }} ')
+              var str = "{{ nameList }}"; var res = str.split("&#x27;");
+              function makeTableHTML(myArray) {     var result = "<table border=1>";     for(var i=0; i<myArray.length; i++) {         result += "<tr>";         for(var j=0; j<myArray[i].length; j++){             result += "<td>"+myArray[i][j]+"</td>";         }         result += "</tr>";     }     result += "</table>";      return result; }
+              console.log(res)
+              makeTableHTML()
+            </script>
+          </tbody>
+        </table>
+
+      </div>
+
+  </div>
+
+{% endblock %}
